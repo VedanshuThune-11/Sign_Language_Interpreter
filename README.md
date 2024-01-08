@@ -77,5 +77,5 @@ We set all the places to zero in the event that there is no hand.
 
 - Time series similarity is often calculated using DTW.
 - We calculate the hand connection angle variation's DTW over time.
-__
 
+---
