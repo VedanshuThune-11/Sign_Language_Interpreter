@@ -1,24 +1,24 @@
-# Sign Language Recognition - using MediaPipe and DTW
+# Sign Language Recognition - utilizing MediaPipe and DTW
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-This repository proposes an implementation of a Sign Recognition Model using the **MediaPipe** library 
-for landmark extraction and **Dynamic Time Warping** (DTW) as a similarity metric between signs.
+This repository provides an implementation of a Sign Recognition Model using the MediaPipe library for landmark extraction and Dynamic Time Warping (DTW) as a similarity metric between signs.
 
 ![](example.gif)
 
-___
+---
 
-## Set up
+## Setup
 
-### 1. Open terminal and go to the Project directory
+### 1. Navigate to the Project Directory in the Terminal
 
-### 2. Install the necessary libraries
+### 2. Install Required Libraries
 
-- ` pip install -r requirements.txt `
+- pip install -r requirements.txt
 
-### 3. Import Videos of signs which will be considered as reference
-The architecture of the `videos/` folder must be:
+### 3. Import Videos of Signs for Reference
+
+The structure of the videos/ folder should be as follows:
 ```
 |data/
     |-videos/
@@ -32,54 +32,50 @@ The architecture of the `videos/` folder must be:
             ...
 ```
 
-To automatically create a small dataset of French signs:
+To automatically generate a small dataset of French signs:
 
-- Install `ffmpeg` (for MacOS `brew install ffmpeg`)
-- Run: ` python yt_download.py `
-- Add more YouTube links in ``yt_links.csv`` if needed
-> N.B. The current dataset is insufficient to obtain good results. Feel free to add more links or import your own videos 
+- Install ffmpeg (for MacOS, use brew install ffmpeg)
+- Run: python yt_download.py
+- Add more YouTube links in yt_links.csv if needed
+> Note: The current dataset may be insufficient for optimal results. Consider adding more links or importing your own videos.
 
-### 4. Load the dataset and turn on the Webcam
+### 4. Load the Dataset and Activate the Webcam
 
-- ` python main.py `
+- 'python main.py'
 
-### 5. Press the "r" key to record the sign. 
+### 5. Press the "r" key to record the sign.
 
-___
+---
 ## Code Description
 
-### *Landmark extraction (MediaPipe)*
+### MediaPipe's landmark extraction
 
-- The **Holistic Model** of MediaPipe allows us to extract the keypoints of the Hands, Pose and Face models.
-For now, the implementation only uses the Hand model to predict the sign.
+- We can extract the Hands, Pose, and Face models' important points using MediaPipe's Holistic Model.
+As of right now, the implementation just predicts the sign using the Hand model.
 
 
-### *Hand Model*
+### Hand Model
 
-- In this project a **HandModel** has been created to define the Hand gesture at each frame. 
-If a hand is not present we set all the positions to zero.
+- To specify the hand gesture at each frame, a HandModel has been constructed for this project. 
+We set all the places to zero in the event that there is no hand.
 
-- In order to be **invariant to orientation and scale**, the **feature vector** of the
-HandModel is a **list of the angles** between all the connexions of the hand.
+- The *feature vector of the HandModel is a list of the angles between each hand's connexions in order to be *invariant to orientation and scale.
 
-### *Sign Model*
+### Sign Model
 
-- The **SignModel** is created from a list of landmarks (extracted from a video)
+- A list of landmarks is used to generate the SignModel (extracted from a video)
 
-- For each frame, we **store** the **feature vectors** of each hand.
+- We store the feature vectors of every hand for every frame.
 
-### *Sign Recorder*
+### Sign Recorder
 
-- The **SignRecorder** class **stores** the HandModels of left hand and right hand for each frame **when recording**.
-- Once the recording is finished, it **computes the DTW** of the recorded sign and 
-all the reference signs present in the dataset.
-- Finally, a voting logic is added to output a result only if the prediction **confidence** is **higher than a threshold**.
+- The HandModels of the left and right hands for each frame when recording are stored by the SignRecorder class.
+- After recording is complete, it calculates the DTW for both the recorded sign and each of the dataset's reference signs.
+- In order to produce a result only if the forecast confidence is higher than a threshold, a voting mechanism is finally introduced.
 
-### *Dynamic Time Warping*
+### Dynamic Time Warping
 
--  DTW is widely used for computing time series similarity.
-
-- In this project, we compute the DTW of the variation of hand connexion angles over time.
-
-___
+- Time series similarity is often calculated using DTW.
+- We calculate the hand connection angle variation's DTW over time.
+__
 
