@@ -3,7 +3,7 @@
 
 This repository provides an implementation of a Sign Recognition Model using the MediaPipe library for landmark extraction and Dynamic Time Warping (DTW) as a similarity metric between signs.
 
-![](example.gif)
+![](example.mp4)
 
 ---
 
