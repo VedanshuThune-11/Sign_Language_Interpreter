@@ -7,7 +7,6 @@ for landmark extraction and **Dynamic Time Warping** (DTW) as a similarity metri
 
 ![](example.gif)
 
-#### Source : https://www.sicara.ai/blog/sign-language-recognition-using-mediapipe
 ___
 
 ## Set up
@@ -84,7 +83,3 @@ all the reference signs present in the dataset.
 
 ___
 
-## References
-
- - [Pham Chinh Huu, Le Quoc Khanh, Le Thanh Ha : Human Action Recognition Using Dynamic Time Warping and Voting Algorithm](https://www.researchgate.net/publication/290440452)
- - [Mediapipe : Pose classification](https://google.github.io/mediapipe/solutions/pose_classification.html)
